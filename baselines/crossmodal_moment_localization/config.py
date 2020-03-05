@@ -81,6 +81,8 @@ class BaseOptions(object):
                                  help="hard negatives are still sampled, but from a harder pool.")
 
         # Model and Data config
+        self.parser.add_argument("--model_type", type=str, default="xml", 
+                                 help="xml, xml_middle, xml_early")
         self.parser.add_argument("--max_sub_l", type=int, default=50,
                                  help="max length of all sub sentence 97.71 under 50 for 3 sentences")
         self.parser.add_argument("--max_desc_l", type=int, default=30, help="max length of descriptions")
@@ -108,6 +110,7 @@ class BaseOptions(object):
         self.parser.add_argument("--ctx_mode", type=str, choices=["video", "sub", "video_sub", "tef",
                                                                   "video_tef", "sub_tef", "video_sub_tef"],
                                  help="which context to use. a combination of [video, sub, tef]")
+        self.parser.add_argument("--fuse_mode", type=str, default="add", help="add, mul, concat for joint fusion")
         self.parser.add_argument("--video_duration_idx_path", type=str, default=None)
         self.parser.add_argument("--vid_feat_path", type=str, default="")
         self.parser.add_argument("--no_norm_vfeat", action="store_true",
