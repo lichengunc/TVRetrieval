@@ -42,6 +42,11 @@ case ${dset_name} in
             vid_feat_path=${feature_root}/video_feature/tvr_resnet152_rgb_max_i3d_rgb600_avg_cat_cl-1.5.h5
             vid_feat_size=3072
             extra_args+=(--no_norm_vfeat)  # since they are already normalized.
+        elif [[ ${vid_feat_type} == "resnet_slowfast" ]]; then
+            echo "Uisng concatenated ResNet and slowfast feature with shape 2048+2304"
+            vid_feat_path=${feature_root}/video_feature/tvr_resnet152_rgb_max_slowfast_rgb400_cat-1.5.h5
+            vid_feat_size=4352
+            extra_args+=(--no_norm_vfeat)  # since they are already normalized. 
         fi
         eval_split_name=val
         nms_thd=-1
